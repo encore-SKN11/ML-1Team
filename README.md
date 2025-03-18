@@ -11,7 +11,7 @@
 | --- | --- | --- |
 | ![Image](https://github.com/user-attachments/assets/9a5c53e6-e3da-4810-b96a-9b376100b926) | ![Image](https://github.com/user-attachments/assets/9a5c53e6-e3da-4810-b96a-9b376100b926) | ![Image](https://github.com/user-attachments/assets/b19ee646-41db-48f0-b502-3f0c0e0ef549) |
 | <div align="center">INTP</div> | <div align="center">INTP</div> | <div align="center">ENTJ</div> |
-# 프로젝트 주제 : ⚾️미국 간호사 이탈 예측 프로젝트⚾️
+# 프로젝트 주제 : 미국 간호사 이탈 예측 프로젝트
 
 # 📅 개발 기간
 **2025.03.14 ~ 2025.03.18 (총 5일)**
