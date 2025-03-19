@@ -18,21 +18,18 @@
 
 ##  🎯 프로젝트 목표
 
-- **목적**:
-
-  - 2000년부터 2024년까지 KBO 외야수 중 연도별 WAR 상위 20명(약 400명)의 경기기록 데이터를 분석하여 골든글러브 수상 여부와 주요 성적 지표 간의 관계를 탐색하고, 모델학습을 위한 EDA 및 데이터 전처리를 수행하는 것이 목표이다.
+- **목적 / 기대효과**:
+  본 프로젝트를 통해 간호사 이탈에 영향을 주는 주요 요인을 정량적으로 파악하고, 이를 바탕으로 해당 병원에
+  1. 효과적인 인사·복지 정책을 수립
+  2. 앞으로 고용 시 이탈 가능성이 낮은 특징을 가진 지원자를 선별
+  3. 인력 채용과 교육에 드는 비용 절감
+  4. 장기적으로 인사 관리 효율성 증대<br/><br/>
+등 다양한 인사이트를 제공함으로써 데이터에 기반한 의사결정을 돕기 위함
 
 - **접근 방식**:
-  - 골든글러브 수상자는 경기 성적을 바탕으로 매년 기자단 투표를 통해 선정되며, 타율, WAR, 홈런, OPS 등 다양한 성적 지표의 영향을 받는다. 이에 해당 되는 연도별 데이터 개별 CSV 파일로 수집하고, 이를 통합하여 분석을 진행했다.
-  - 주요 성적 지표와 골든글러브 수상 여부 간의 관계를 분석하고, 모델 학습을 위한 데이터 정리 및 전처리를 진행했으며, 모델 적용을 위한 특징 선택 및 정규화 과정을 수행하였다.
+  - 목적에 맞는 전처리를 진행하고 여러 모델 중 학습 후 성능이 좋은 모델을 바탕으로, 퇴사 여부에 큰 영향을 미치는 feature들을 수치나 시각화(그래프 등)를 통해 확인하고 이를 통해 병원에 제공할 수 있는 인사이트를 도출
    
-- **타겟 변수**: **`골든글러브 수상 여부`** (1: 수상, 0: 미수상)
-
-
-- **기대 효과** :
-   1. 선수 성적 기반 골든글러브 수상 가능성 예측(특정 시즌에서 수상 가능성이 높은 선수를 사전에 예측 가능)
-   2. 새로운 시즌 성적 데이터를 입력하면 골든글러브 수상 가능성이 높은 선수 추천 가능
-   3. 야구 팬 및 관계자들에게 유용한 인사이트 제공
+- **타겟 변수**: **`퇴사여부`** ('Yes': 퇴사 o , 'No': 퇴사 x)
 
 
 ## 1.데이터 구성 
@@ -91,82 +88,103 @@
 ### 3. 결측치 및 이상치 탐색
   - 결측치 : **없음**
 
-  - 이상치 : 나이가 55세 이상인 간호사
-      → 이상치 가능성 높음 : ('월급이 적다'거나, '직무에 만족하지 못한다'거나 등 피처들로 인한 요인보다 나이로 인해 은퇴하는 것으로 추정)
-    
+  - 이상치 : 나이,월급,현 매니저와 근속연수 에서 이상치 발견 <br/>
+      → '나이' feature의 이상치 가능성 높음 : ('월급이 적다', '직무에 만족하지 못한다' 등 피처들로 인한 요인보다 나이로 인해 은퇴하는 것으로 추정)
+      ![Image](https://github.com/user-attachments/assets/c038dbb8-f705-43ce-ad1c-0420f88ac0d4)
+
 
 ### 4. 데이터 시각화를 통한 탐색
 
-   #### 1️⃣퇴사 여부 분포 : 골든글러브 수상자(1)와 미수상자(0)의 데이터 분포를 나타낸 그래프
-  ![Image](https://github.com/user-attachments/assets/bfe85288-fa8d-4027-b019-5b9980d13e78)
-  - 골든글러브 수상자(1)와 미수상자(0)의 데이터 분포를 나타낸 그래프
-  - 수상하지 못한 선수(0)가 수상한 선수(1)보다 훨씬 많음 → **데이터 불균형 존재**
-  - 전체 데이터 중 약 21%만 수상(1)했으며, 대부분은 미수상(0) 상태
+   #### 1️⃣퇴사 여부 분포 : 퇴사한 인원('Yes')과 퇴사하지 않은 인원('No')의 데이터 분포를 나타낸 그래프
+   
+  ![Image](https://github.com/user-attachments/assets/e16e2910-2214-414d-8652-0305ab6340ef)
+  - 퇴사한 인원(Yes)와 퇴사하지 않은 인원(No)의 데이터 분포를 나타낸 그래프
+  - 퇴사하지 않은 인원(0)의 수가 퇴사한 인원(1)보다 훨씬 많음 → **데이터 불균형 존재**
 
 
-   #### 2️⃣ 수치형 변수 간 상관관계 : KBO 외야수 성적 지표 간의 상관관계를 나타낸 히트맵(Heatmap)
-   ![Image](https://github.com/user-attachments/assets/89ad766b-b3bd-435d-912b-a5bce5eb7aff)
-  - WAR, OPS, wRC+ 등 주요 성적 지표들이 서로 얼마나 강한 관계를 가지는지 시각적으로 표현
+   #### 2️⃣ 수치형 변수 간 상관관계 : 지표 간의 상관관계를 나타낸 히트맵(Heatmap)
+![Image](https://github.com/user-attachments/assets/f6b37cda-ae48-4db5-a976-914ed16acea6)
+  - 주요 지표들이 서로 얼마나 강한 관계를 가지는지 시각적으로 표현
   - 색상(파란색~빨간색)으로 상관계수의 크기를 나타냄
       - 빨간색(1에 가까움): 강한 양의 상관관계 (서로 비례)
       - 파란색(-1에 가까움): 강한 음의 상관관계 (서로 반비례)
-      - 흰색(0에 가까움): 거의 상관없음
-  - 홈런과 장타율(0.89), OPS와 장타율(0.97) 등 일부 변수는 높은 상관관계를 가짐
-  - 출루율과 WAR(0.75), OPS와 wRC+(0.88)도 강한 관계를 보임
-
-
+      - 흰색(0에 가까움): 거의 상관없음<br/>
+  
     #### 3️⃣ 결측치 개수 확인 결과
     
-    ![Image](https://github.com/user-attachments/assets/6e785889-60d0-46f5-8df8-0be7ccf04c74)
-  - 대부분의 컬럼에서 결측치 없음 (0으로 표시됨)
-  - 도루 컬럼에 결측치(NaN) 52개 존재
-
+    ![Image](https://github.com/user-attachments/assets/35c77b40-17f7-46af-b8e9-4d2d269a8910) 
+  - 모든 컬럼에서 결측치 없음 (0으로 표시됨)
     
-    #### 4️⃣ 주요 성적 지표의 분포 및 이상치 탐색 : 박스플롯(Boxplot)을 활용하여 주요 성적 지표의 분포와 이상치 분석
-    ![Image](https://github.com/user-attachments/assets/498c7221-b78d-4596-aa15-aa4cdfaa3a66) 
-    ![Image](https://github.com/user-attachments/assets/8f3a2038-3955-4ff4-ae2a-2ae913f5e53c)
-    - 위의 그래프에서 원으로 표시된 값들은 **이상치(outliers)** 로, 다른 데이터와 큰 차이를 보이는 값들
-    - ex) 홈런, wRC+, OPS 등 일부 지표에서 **극단적인 이상치가 관찰됨**
-     
-      ⚠️ 선수의 뛰어난 성과를 반영하는 경우가 많아, **데이터의 의미를 보존하기 위해 제거하지 않고 유지함.**
-
+   
 
 ### 5. 데이터 정제 및 전처리
-  #### 1️⃣ 수상 예측에 유의미하다고 판단되는 feature 추출
-  ![Image](https://github.com/user-attachments/assets/78f624f9-aa37-496f-8fe3-86e66c37370e)
+  #### 1️⃣ 의료 분야의 직원 중 '간호사' 직업을 가진 데이터만 추출 <br/>
   
-  -> 컬럼 제거: `df_new = df.drop(columns=['이름', '득점', '2루타', '3루타', '타점', '도루', '볼넷', '사구', '고의사구', '삼진', '병살', '희생타', '희생플라이'])`
+  - 직업이 간호사인 데이터만 추출 (Other,Therapist,Administrative,Admin 제외)  1676명 --> 822명 <br/>
+    `df = df[df['직무'] == 'Nurse'].reset_index(drop=True)`
+    
 
-  #### 2️⃣ 표준화 : 
-  - 연도별 데이터 평균 추출
+  #### 2️⃣ 이상치 제외 : 나이가 55세 이상인 간호사  
+  
+  - 나이로 인해 은퇴하는 것으로 추정  822명 --> 794명 <br/>
+  `df = df[df['나이'] < 55].reset_index(drop=True)`
 
-  ![Image](https://github.com/user-attachments/assets/5e12b113-42de-4b93-86cb-da37fdd7babb)
-  <br/><br/><br/>
+  #### 3️⃣ 수치형 변수만 선택하여 스케일링
 
-  - 기존 데이터 - 연도별 데이터 평균 (표준화 진행 전)
+  &nbsp;&nbsp;&nbsp;&nbsp; `numeric_cols = X.select_dtypes(include=['int64', 'float64']).columns` <br/>
+  &nbsp;&nbsp;&nbsp;&nbsp; `scaler = StandardScaler()` <br/>
+  &nbsp;&nbsp;&nbsp;&nbsp; `X_scaled_numeric = scaler.fit_transform(X[numeric_cols])` <br/>
 
-  ![Image](https://github.com/user-attachments/assets/51731c63-d695-4f11-b6ea-8e13bb26d284)
-  #### - `scaler = StandardScaler()`
-  <br/><br/>
+  #### 4️⃣ 범주형 변수는 그대로 두고 결합
+
+  &nbsp;&nbsp;&nbsp;&nbsp; `X_encoded = pd.concat([X_scaled_numeric, X.drop(columns=numeric_cols)], axis=1)`
+
+  #### 5️⃣ 피처에 대해서만 원핫 인코딩
+
+  &nbsp;&nbsp;&nbsp;&nbsp; `X_encoded = pd.get_dummies(X_encoded, drop_first=True)`
+  
+  
 ### 6. 데이터 분할 및 학습
-  
-  ![Image](https://github.com/user-attachments/assets/21b5a3d6-4d1e-4fdf-8586-774c04926b62)
-  #### - 표준화된 train 데이터를 이용하여 K-NN 학습 진행
-  #### - test 데이터의 비율 : 25%
-  <br/><br/><br/><br/>
-### 7. 예측 및 결과 평가
+  `X_train, X_test, y_train, y_test = train_test_split(X_encoded,y,test_size=0.2,random_state=42)`
+  #### - 전처리된 훈련 데이터를 이용하여 여러 모델에 대한 학습 진행
+  #### - test 데이터의 비율 : 20%
+  ![Image](https://github.com/user-attachments/assets/1851311a-3328-4e89-9956-cc124cea0c61) 
 
-  #### - target값(수상여부) 불균형 : 대부분의 인원이 골든글러브 수상 x
-  ![Image](https://github.com/user-attachments/assets/95a8930b-2cf1-4ac7-b7be-708c6d81a90c)
+  <br/><br/><br/><br/>
+### 7. 예측 및 결과 평가 (평가 지표 확인 - Classification_report)
+
+  ![Image](https://github.com/user-attachments/assets/e5812841-c24a-4de0-a55f-83ed33479289)
+  ![Image](https://github.com/user-attachments/assets/f47eb4e5-4d34-4ff2-b006-a982d7c97040)
+  ![Image](https://github.com/user-attachments/assets/75d80beb-f50e-4c31-8a72-4320f4779cf7)
+  ![Image](https://github.com/user-attachments/assets/c18eb1cc-145c-4635-a052-654519048d3e)
+  ![Image](https://github.com/user-attachments/assets/84b60bd8-054a-4967-8451-a656a9d98aef)
 
   #### - 실제 예측 결과
+  ![image](https://github.com/user-attachments/assets/86eab15f-f5fb-4433-a0db-d40b716cd04f)
 
-  ![alt text](image/test.png)
-
-  ## ✅결론 (평가 지표 확인-Classification_report)
   
-  ![Image](image/확률.png)
-  이번 프로젝트에서 사용한 데이터는 수상에 실패한 인원이 385명, 수상에 성공한 인원이 75명으로 클래스 불균형이 존재한다. <br/>
-  따라서 골든글러브 수상에 실패한 인원을 정확히 예측한 케이스가 많기 때문에 정확도가 약 0.97 으로 꽤 높은 수치를 보이지만 <br/>
-  **실제 골든글러브 수상 인원을 모델이 수상했다고 판정한 비율을 알려주는 Recall(재현율)의 수치를 확인하는 것이 유의미하다.** <br/>
-  최종적으로 모델 학습 결과, 88% 확률(**Recall**)로 실제 골든글러브 수상 인원을 정확히 예측하였다.     
+
+  ## ✅학습 결과를 이용한 인사이트 분석
+- 여러 모델 중 성능이 좋았던 Logistic Regression 모델의 가중치를 바탕으로, 퇴사 여부에 큰 영향을 미치는 feature들을 수치와 시각화(그래프)를 통해 확인하고 이를 통해 병원에 제공할 수 있는 인사이트를 도출
+  
+  - Logistic Regression 모델 학습 결과에서 추출된 가중치를 이용해 타겟(퇴사여부)에 대한 각 feature의 중요도를 수치로 확인 
+  ![Image](https://github.com/user-attachments/assets/6da3601a-96ad-484e-a8bd-7c1f52f14774)  <br/><br/>
+  
+  - Logistic Regression 모델 학습 결과에서 추출된 가중치를 이용해 타겟(퇴사여부)에 대한 각 feature의 중요도를 그래프로 확인
+  ![Image](https://github.com/user-attachments/assets/170c7f4a-aa1a-4507-85a0-b74ac581a44a)
+
+  ### 인사이트
+  - '퇴사여부'에 가장 큰 영향을 끼치는 요소는 **'초과근무여부'** 이다.
+  - '결혼여부'가 '퇴사여부'에 두번째로 큰 영향을 끼친다.
+  - '나이'가 많을수록 퇴사할 확률이 적다.
+  - '마지막 승진 이후 근무 연수'가 길수록 퇴사할 확률이 크다.
+  - '출장빈도'가 많을수록 퇴사할 확률이 크다.
+  - '출퇴근거리'가 짧을수록 퇴사할 확률이 적다. 
+
+  ### 제안 가능한 이탈 방지 방안
+  - 초과근무 줄이기
+  - 승진 잘 시켜주기
+  - 출장 줄이기
+ 
+  ### 신규/경력 간호사 채용 시 
+  - 결혼을 했으며, 나이가 어느정도 있고, 병원과 가까운 곳에 거주하는 인원 채용하는 것이 유리
