@@ -65,6 +65,8 @@
 
   
 ### 3. 결측치 및 이상치 탐색
+![Image](https://github.com/user-attachments/assets/c5b12915-c720-4f0c-b8f3-fae9e3ab4634)
+
   - 결측치 : **없음**
 
   - 이상치 : 나이,월급,현 매니저와 근속연수 에서 이상치 발견 <br/>
