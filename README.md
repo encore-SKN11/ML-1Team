@@ -95,7 +95,7 @@
 
 ### 4. 데이터 시각화를 통한 탐색
 
-   #### 1️⃣퇴사 여부 분포 : 퇴사한 인원('Yes')와 퇴사하지 않은 인원('No')의 데이터 분포를 나타낸 그래프
+   #### 1️⃣퇴사 여부 분포 : 퇴사한 인원('Yes')과 퇴사하지 않은 인원('No')의 데이터 분포를 나타낸 그래프
    
   ![Image](https://github.com/user-attachments/assets/e16e2910-2214-414d-8652-0305ab6340ef)
   - 퇴사한 인원(Yes)와 퇴사하지 않은 인원(No)의 데이터 분포를 나타낸 그래프
@@ -103,7 +103,8 @@
 
 
    #### 2️⃣ 수치형 변수 간 상관관계 : KBO 외야수 성적 지표 간의 상관관계를 나타낸 히트맵(Heatmap)
-   ![Image](https://github.com/user-attachments/assets/89ad766b-b3bd-435d-912b-a5bce5eb7aff)
+![Image](https://github.com/user-attachments/assets/c038dbb8-f705-43ce-ad1c-0420f88ac0d4)
+![Image](https://github.com/user-attachments/assets/e932e65c-41ea-41d0-9d39-078f37a5ec0e)
   - 주요 지표들이 서로 얼마나 강한 관계를 가지는지 시각적으로 표현
   - 색상(파란색~빨간색)으로 상관계수의 크기를 나타냄
       - 빨간색(1에 가까움): 강한 양의 상관관계 (서로 비례)
