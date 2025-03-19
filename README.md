@@ -108,16 +108,12 @@
   - 색상(파란색~빨간색)으로 상관계수의 크기를 나타냄
       - 빨간색(1에 가까움): 강한 양의 상관관계 (서로 비례)
       - 파란색(-1에 가까움): 강한 음의 상관관계 (서로 반비례)
-      - 흰색(0에 가까움): 거의 상관없음
+      - 흰색(0에 가까움): 거의 상관없음<br/>
   
-
-
     #### 3️⃣ 결측치 개수 확인 결과
     
-    ![Image](https://github.com/user-attachments/assets/6e785889-60d0-46f5-8df8-0be7ccf04c74)
-  - 대부분의 컬럼에서 결측치 없음 (0으로 표시됨)
-  - 도루 컬럼에 결측치(NaN) 52개 존재
-
+    ![Image](https://github.com/user-attachments/assets/35c77b40-17f7-46af-b8e9-4d2d269a8910) 
+  - 모든 컬럼에서 결측치 없음 (0으로 표시됨)
     
     #### 4️⃣ 주요 성적 지표의 분포 및 이상치 탐색 : 박스플롯(Boxplot)을 활용하여 주요 성적 지표의 분포와 이상치 분석
     ![Image](https://github.com/user-attachments/assets/498c7221-b78d-4596-aa15-aa4cdfaa3a66) 
@@ -156,11 +152,10 @@
   
   
 ### 6. 데이터 분할 및 학습
-  
-  ![Image](https://github.com/user-attachments/assets/21b5a3d6-4d1e-4fdf-8586-774c04926b62)
+  `X_train, X_test, y_train, y_test = train_test_split(X_encoded,y,test_size=0.2,random_state=42)`
   #### - 전처리된 훈련 데이터를 이용하여 여러 모델에 대한 학습 진행
   #### - test 데이터의 비율 : 20%
- 
+  ![Image](https://github.com/user-attachments/assets/1851311a-3328-4e89-9956-cc124cea0c61) 
 
   <br/><br/><br/><br/>
 ### 7. 예측 및 결과 평가 (평가 지표 확인 - Classification_report)
