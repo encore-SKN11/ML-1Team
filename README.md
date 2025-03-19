@@ -123,11 +123,14 @@
   - 직업이 간호사인 데이터만 추출 (Other,Therapist,Administrative,Admin 제외)  1676명 --> 822명 <br/>
     `df = df[df['직무'] == 'Nurse'].reset_index(drop=True)`
     
+  ![Image](https://github.com/user-attachments/assets/eebf5d03-3280-44ee-9048-f8861ba70027) 
 
   #### 2️⃣ 이상치 제외 : 나이가 55세 이상인 간호사  
   
   - 나이로 인해 은퇴하는 것으로 추정  822명 --> 794명 <br/>
   `df = df[df['나이'] < 55].reset_index(drop=True)`
+
+  ![Image](https://github.com/user-attachments/assets/31fc3415-e366-4b25-9672-86aeb1e74172) 
 
   #### 3️⃣ 수치형 변수만 선택하여 스케일링
 
