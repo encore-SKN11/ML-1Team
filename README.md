@@ -91,14 +91,16 @@
 ### 3. 결측치 및 이상치 탐색
   - 결측치 : **없음**
 
-  - 이상치 : 나이가 55세 이상인 간호사
+  - 이상치 : 나이가 55세 이상인 간호사<br/>
       → 이상치 가능성 높음 : ('월급이 적다'거나, '직무에 만족하지 못한다'거나 등 피처들로 인한 요인보다 나이로 인해 은퇴하는 것으로 추정)
-    
+      ![Image](https://github.com/user-attachments/assets/c038dbb8-f705-43ce-ad1c-0420f88ac0d4)
+
 
 ### 4. 데이터 시각화를 통한 탐색
 
    #### 1️⃣퇴사 여부 분포 : 골든글러브 수상자(1)와 미수상자(0)의 데이터 분포를 나타낸 그래프
-  ![Image](https://github.com/user-attachments/assets/bfe85288-fa8d-4027-b019-5b9980d13e78)
+   
+  ![Image](https://github.com/user-attachments/assets/e16e2910-2214-414d-8652-0305ab6340ef)
   - 골든글러브 수상자(1)와 미수상자(0)의 데이터 분포를 나타낸 그래프
   - 수상하지 못한 선수(0)가 수상한 선수(1)보다 훨씬 많음 → **데이터 불균형 존재**
   - 전체 데이터 중 약 21%만 수상(1)했으며, 대부분은 미수상(0) 상태
@@ -132,15 +134,17 @@
 
 
 ### 5. 데이터 정제 및 전처리
-  #### 1️⃣ 수상 예측에 유의미하다고 판단되는 feature 추출
-  ![Image](https://github.com/user-attachments/assets/78f624f9-aa37-496f-8fe3-86e66c37370e)
+  #### 1️⃣ 의료 분야의 직원 중 '간호사' 직업을 가진 데이터만 추출 <br/>
   
-  -> 컬럼 제거: `df_new = df.drop(columns=['이름', '득점', '2루타', '3루타', '타점', '도루', '볼넷', '사구', '고의사구', '삼진', '병살', '희생타', '희생플라이'])`
+  - 직업이 간호사인 데이터만 추출 (Other,Therapist,Administrative,Admin 제외)  1676명 --> 822명 <br/>
+    `df = df[df['직무'] == 'Nurse'].reset_index(drop=True)`
+    
 
-  #### 2️⃣ 표준화 : 
-  - 연도별 데이터 평균 추출
+  #### 2️⃣ 이상치 제외 : 나이가 55세 이상인 간호사  
+  
+  - 나이로 인해 은퇴하는 것으로 추정  # 822명 --> 794명 <br/>
+  `df = df[df['나이'] < 55].reset_index(drop=True)`
 
-  ![Image](https://github.com/user-attachments/assets/5e12b113-42de-4b93-86cb-da37fdd7babb)
   <br/><br/><br/>
 
   - 기존 데이터 - 연도별 데이터 평균 (표준화 진행 전)
