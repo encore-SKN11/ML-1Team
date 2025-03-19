@@ -142,16 +142,24 @@
 
   #### 2️⃣ 이상치 제외 : 나이가 55세 이상인 간호사  
   
-  - 나이로 인해 은퇴하는 것으로 추정  # 822명 --> 794명 <br/>
+  - 나이로 인해 은퇴하는 것으로 추정  822명 --> 794명 <br/>
   `df = df[df['나이'] < 55].reset_index(drop=True)`
 
-  <br/><br/><br/>
+  #### 3️⃣ 수치형 변수만 선택하여 스케일링
 
-  - 기존 데이터 - 연도별 데이터 평균 (표준화 진행 전)
+  &nbsp;&nbsp;&nbsp;&nbsp; `numeric_cols = X.select_dtypes(include=['int64', 'float64']).columns` <br/>
+  &nbsp;&nbsp;&nbsp;&nbsp; `scaler = StandardScaler()` <br/>
+  &nbsp;&nbsp;&nbsp;&nbsp; `X_scaled_numeric = scaler.fit_transform(X[numeric_cols])` <br/>
 
-  ![Image](https://github.com/user-attachments/assets/51731c63-d695-4f11-b6ea-8e13bb26d284)
-  #### - `scaler = StandardScaler()`
-  <br/><br/>
+  #### 4️⃣ 범주형 변수는 그대로 두고 결합
+
+  &nbsp;&nbsp;&nbsp;&nbsp; `X_encoded = pd.concat([X_scaled_numeric, X.drop(columns=numeric_cols)], axis=1)`
+
+  #### 5️⃣ 피처에 대해서만 원핫 인코딩
+
+  &nbsp;&nbsp;&nbsp;&nbsp; `X_encoded = pd.get_dummies(X_encoded, drop_first=True)`
+  
+  
 ### 6. 데이터 분할 및 학습
   
   ![Image](https://github.com/user-attachments/assets/21b5a3d6-4d1e-4fdf-8586-774c04926b62)
