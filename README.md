@@ -102,9 +102,8 @@
   - 퇴사하지 않은 인원(0)의 수가 퇴사한 인원(1)보다 훨씬 많음 → **데이터 불균형 존재**
 
 
-   #### 2️⃣ 수치형 변수 간 상관관계 : KBO 외야수 성적 지표 간의 상관관계를 나타낸 히트맵(Heatmap)
-![Image](https://github.com/user-attachments/assets/c038dbb8-f705-43ce-ad1c-0420f88ac0d4)
-![Image](https://github.com/user-attachments/assets/e932e65c-41ea-41d0-9d39-078f37a5ec0e)
+   #### 2️⃣ 수치형 변수 간 상관관계 : 지표 간의 상관관계를 나타낸 히트맵(Heatmap)
+![Image](https://github.com/user-attachments/assets/f6b37cda-ae48-4db5-a976-914ed16acea6)
   - 주요 지표들이 서로 얼마나 강한 관계를 가지는지 시각적으로 표현
   - 색상(파란색~빨간색)으로 상관계수의 크기를 나타냄
       - 빨간색(1에 가까움): 강한 양의 상관관계 (서로 비례)
@@ -116,14 +115,7 @@
     ![Image](https://github.com/user-attachments/assets/35c77b40-17f7-46af-b8e9-4d2d269a8910) 
   - 모든 컬럼에서 결측치 없음 (0으로 표시됨)
     
-    #### 4️⃣ 주요 성적 지표의 분포 및 이상치 탐색 : 박스플롯(Boxplot)을 활용하여 주요 성적 지표의 분포와 이상치 분석
-    ![Image](https://github.com/user-attachments/assets/498c7221-b78d-4596-aa15-aa4cdfaa3a66) 
-    ![Image](https://github.com/user-attachments/assets/8f3a2038-3955-4ff4-ae2a-2ae913f5e53c)
-    - 위의 그래프에서 원으로 표시된 값들은 **이상치(outliers)** 로, 다른 데이터와 큰 차이를 보이는 값들
-    - ex) 홈런, wRC+, OPS 등 일부 지표에서 **극단적인 이상치가 관찰됨**
-     
-      ⚠️ 선수의 뛰어난 성과를 반영하는 경우가 많아, **데이터의 의미를 보존하기 위해 제거하지 않고 유지함.**
-
+   
 
 ### 5. 데이터 정제 및 전처리
   #### 1️⃣ 의료 분야의 직원 중 '간호사' 직업을 가진 데이터만 추출 <br/>
