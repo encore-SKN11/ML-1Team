@@ -56,14 +56,12 @@
 
 ### 1. 데이터 로드
 
-![Image](https://github.com/user-attachments/assets/b68ae529-31d4-42e5-8ab4-255d80161843)
-  
-  **연도별 개별 CSV → 하나의 통합 CSV 파일 생성**
-  - `glob.glob("data/*.csv")` 를 이용해 data 폴더 내 모든 CSV 파일을 가져옴 → **'all.csv'** 파일에 통합하여 저장
+![Image](https://github.com/user-attachments/assets/5dc747d4-ef28-49ac-9285-c1161f53e9a1)
+ 
 
 
 ### 2. 데이터 구조 및 기초 통계 확인
-![Image](https://github.com/user-attachments/assets/57e37e6d-1dbc-4f51-afad-04b9a74cfcaf)
+![Image](https://github.com/user-attachments/assets/b3741e48-a594-40c1-ad93-a34da12b6747)
 
   
 ### 3. 결측치 및 이상치 탐색
