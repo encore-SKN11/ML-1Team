@@ -143,6 +143,11 @@
   ![Image](https://github.com/user-attachments/assets/c18eb1cc-145c-4635-a052-654519048d3e)
   ![Image](https://github.com/user-attachments/assets/84b60bd8-054a-4967-8451-a656a9d98aef)
 
+### 8. 추가 성능 향상 + StratifiedKFold 적용 후 평가 지표
+
+  ![Image](https://github.com/user-attachments/assets/79d8164e-4ced-41ae-8d58-ead0649b5e05) 
+
+  
   #### - 실제 예측 결과
   ![image](https://github.com/user-attachments/assets/86eab15f-f5fb-4433-a0db-d40b716cd04f)
 
