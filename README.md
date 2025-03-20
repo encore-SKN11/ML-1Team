@@ -144,9 +144,18 @@
   ![Image](https://github.com/user-attachments/assets/84b60bd8-054a-4967-8451-a656a9d98aef)
 
 ### 8. 추가 성능 향상 + StratifiedKFold 적용 후 평가 지표
+  ![Image](https://github.com/user-attachments/assets/d6604d0e-fbbf-46c6-85c8-db8d5255f0ef) 
 
+  - gridsearchCV 를 사용하여 f1-score를 기준으로 최적의 파라미터를 찾음.
+      - 평가 지표로 F1-score를 선택한 이유는, 단순히 Recall을 기준으로 최적화를 진행할 경우 약 96%에 이르는 높은 재현율을 얻을 수 있었으나, 그에 따라 Precision이 크게 저하되어 전체적인 모델의 균형이 무너지는 문제가 발생하기 때문.<br/>
+        따라서 Precision과 Recall의 조화평균인 F1-score를 기준으로 최적화함으로써 두 지표 간의 균형을 유지하며, 안정적인 예측 성능을 확보할 수 있도록 함.
+  - **데이터의 불균형 문제**(퇴사를 하지 않은 인원이 훨씬 많음)가 있기 때문에 **StratifiedKFold 를 적용하여 테스트 시 퇴사인원 비율을 균형있게 유지**하고 **과적합으로 인한 잘못된 성능 예측을 방지** 
+  
+  ##### 성능 향상 결과 
   ![Image](https://github.com/user-attachments/assets/79d8164e-4ced-41ae-8d58-ead0649b5e05) 
-
+  - Precision 값이 소폭 감소하였으나, **Recall과 F1-score 지표에서 모두 개선**이 나타났습니다.<br/>
+전체적인 모델의 균형과 실질적인 성능을 고려했을 때 미세하더라도 성능 향상이 있다고 판단하였으며, 이에 따라 해당 모델을 **최종 모델로 선정**하였습니다.
+  
   
   #### - 실제 예측 결과
   ![image](https://github.com/user-attachments/assets/86eab15f-f5fb-4433-a0db-d40b716cd04f)
