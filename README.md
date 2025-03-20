@@ -149,13 +149,15 @@
   
 
   ## ✅학습 결과를 이용한 인사이트 분석
-- 여러 모델 중 성능이 좋았던 Logistic Regression 모델의 가중치를 바탕으로, 퇴사 여부에 큰 영향을 미치는 feature들을 수치와 시각화(그래프)를 통해 확인하고 이를 통해 병원에 제공할 수 있는 인사이트를 도출
+- 여러 모델 중 성능이 좋았던 LightGBM 모델의 가중치를 바탕으로, 퇴사 여부에 큰 영향을 미치는 feature들을 수치와 시각화(그래프)를 통해 확인하고 이를 통해 병원에 제공할 수 있는 인사이트를 도출
+  ![Image](https://github.com/user-attachments/assets/8f6e93d5-b771-44c8-96b5-92c19e1b167f)
   
-  - Logistic Regression 모델 학습 결과에서 추출된 가중치를 이용해 타겟(퇴사여부)에 대한 각 feature의 중요도를 수치로 확인
+  - 양,음 상관관계 해석을 위해 Logistic Regression 모델 학습 결과에서 추출된 가중치를 이용해 타겟(퇴사여부)에 대한 각 feature의 중요도를 수치로 확인
     
   ![Image](https://github.com/user-attachments/assets/6da3601a-96ad-484e-a8bd-7c1f52f14774)  <br/><br/>
   
-  - Logistic Regression 모델 학습 결과에서 추출된 가중치를 이용해 타겟(퇴사여부)에 대한 각 feature의 중요도를 그래프로 확인
+  - 양,음 상관관계 해석을 위해 Logistic Regression 모델 학습 결과에서 추출된 가중치를 이용해 타겟(퇴사여부)에 대한 각 feature의 중요도를 그래프로 확인
+    
   ![Image](https://github.com/user-attachments/assets/170c7f4a-aa1a-4507-85a0-b74ac581a44a)
 
   ### 인사이트
