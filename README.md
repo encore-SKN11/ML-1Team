@@ -22,7 +22,7 @@
 - 간호사의 **퇴사 여부(Attrition)** 를 예측하는 머신러닝 모델을 개발하여, 의료기관에서 인력 관리를 효과적으로 수행할 수 있도록 돕는 것이 목표이다.
 
 
-### **기대효과**
+### **기대효과**:
 
  **1. 퇴사 예측 기반 인력 관리 최적화**
 - **조기 위험 인식**: 퇴사 가능성이 높은 간호사를 조기에 파악하여 선제적 대응이 가능
@@ -41,8 +41,9 @@
 ### **타겟 변수**: **`퇴사여부`** ('Yes': 퇴사 o , 'No': 퇴사 x)
 
 
-## 1.데이터 구성 
-## - 데이터소스: https://www.kaggle.com/datasets/jpmiller/employee-attrition-for-healthcare/data
+## 📂데이터 구성 
+### - 데이터소스: [Employee Attrition for Healthcare](https://www.kaggle.com/datasets/jpmiller/employee-attrition-for-healthcare/data)
+- **1676명**의 데이터
 - **35개의 컬럼** 중 주요 컬럼:
     - `초과근무여부`: 초과근무 여부
     - `결혼상태`: 결혼 상태
