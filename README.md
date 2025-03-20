@@ -63,9 +63,9 @@
 ### 2. 데이터 구조 및 기초 통계 확인
 ![Image](https://github.com/user-attachments/assets/b3741e48-a594-40c1-ad93-a34da12b6747)
 
+![Image](https://github.com/user-attachments/assets/c5b12915-c720-4f0c-b8f3-fae9e3ab4634)
   
 ### 3. 결측치 및 이상치 탐색
-![Image](https://github.com/user-attachments/assets/c5b12915-c720-4f0c-b8f3-fae9e3ab4634)
 
   - 결측치 : **없음**
 
