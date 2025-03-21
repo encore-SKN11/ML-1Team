@@ -190,8 +190,12 @@
 
   
 - 양,음 상관관계 해석을 위해 Logistic Regression 모델 학습 결과에서 추출된 가중치를 이용해 타겟(퇴사여부)에 대한 각 feature의 중요도를 수치로 확인
+  
   ![Image](https://github.com/user-attachments/assets/6da3601a-96ad-484e-a8bd-7c1f52f14774)<br/>
 
+- 양,음 상관관계 해석을 위해 Logistic Regression 모델 학습 결과에서 추출된 가중치를 이용해 타겟(퇴사여부)에 대한 각 feature의 중요도를 그래프로 확인
+  
+  ![Image](https://github.com/user-attachments/assets/170c7f4a-aa1a-4507-85a0-b74ac581a44a)
 
   ### 인사이트
   - '퇴사여부'에 가장 큰 영향을 끼치는 요소는 **'나이'** 이다.
