@@ -152,7 +152,7 @@
   ![Image](https://github.com/user-attachments/assets/d6604d0e-fbbf-46c6-85c8-db8d5255f0ef) 
 
 1) **gridsearchCV**를 사용하여 **f1-score 기준**으로 최적의 파라미터를 찾음.<br/>
-   - 따라서 Precision과 Recall의 조화평균인 F1-score를 기준으로 최적화함으로써 두 지표 간의 균형을 유지하며, 안정적인 예측 성능을 확보할 수 있도록 함.
+   - Precision과 Recall의 조화평균인 F1-score를 기준으로 최적화함으로써 두 지표 간의 균형을 유지하며, 안정적인 예측 성능을 확보할 수 있도록 함.
 2) **데이터의 불균형 문제**(퇴사를 하지 않은 인원이 훨씬 많음)가 있기 때문에 **StratifiedKFold 를 적용<br/>
    - **테스트 시 퇴사인원 비율을 균형있게 유지**하고 **과적합으로 인한 잘못된 성능 예측을 방지** 
   
@@ -187,7 +187,6 @@
   ![Image](https://github.com/user-attachments/assets/67ceb942-2f9e-4239-b6ba-5091f30c468d) 
   
 - 양,음 상관관계 해석을 위해 Logistic Regression 모델 학습 결과에서 추출된 가중치를 이용해 타겟(퇴사여부)에 대한 각 feature의 중요도를 수치로 확인
-    
   ![Image](https://github.com/user-attachments/assets/6da3601a-96ad-484e-a8bd-7c1f52f14774)  <br/><br/>
   ![Image](https://github.com/user-attachments/assets/170c7f4a-aa1a-4507-85a0-b74ac581a44a)
 
