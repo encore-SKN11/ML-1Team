@@ -16,9 +16,9 @@
 # 📅 개발 기간
 **2025.03.14 ~ 2025.03.18 (총 5일)**
 
-##  🎯 프로젝트 목표
+##  🎯 프로젝트 개요
 
-### **프로젝트 개요**
+### **프로젝트 목표**
 - 간호사의 **퇴사 여부(Attrition)** 를 예측하는 머신러닝 모델을 개발하여, 의료기관에서 인력 관리를 효과적으로 수행할 수 있도록 돕는 것이 목표이다.
 
 
@@ -118,13 +118,13 @@
 
   ![Image](https://github.com/user-attachments/assets/31fc3415-e366-4b25-9672-86aeb1e74172) 
 
-  #### 3️⃣ 수치형 변수만 선택하여 스케일링 (`연령`, `월급`, `근속 연수`)
+  #### 3️⃣ 수치형 변수만 선택하여 스케일링 (`연령`, `월급`, `근속 연수` 등)
 
   &nbsp;&nbsp;&nbsp;&nbsp; `numeric_cols = X.select_dtypes(include=['int64', 'float64']).columns` <br/>
   &nbsp;&nbsp;&nbsp;&nbsp; `scaler = StandardScaler()` <br/>
   &nbsp;&nbsp;&nbsp;&nbsp; `X_scaled_numeric = scaler.fit_transform(X[numeric_cols])` <br/>
 
-  #### 4️⃣ 범주형 변수는 그대로 두고 결합 (`부서`, `직무`, `결혼 상태`)
+  #### 4️⃣ 범주형 변수는 그대로 두고 결합 (`부서`, `직무`, `결혼 상태` 등)
 
   &nbsp;&nbsp;&nbsp;&nbsp; `X_encoded = pd.concat([X_scaled_numeric, X.drop(columns=numeric_cols)], axis=1)`
 
@@ -152,8 +152,11 @@
   ![Image](https://github.com/user-attachments/assets/d6604d0e-fbbf-46c6-85c8-db8d5255f0ef) 
 
 1) **gridsearchCV**를 사용하여 **f1-score 기준**으로 최적의 파라미터를 찾음.<br/>
-   - Precision과 Recall의 조화평균인 F1-score를 기준으로 최적화함으로써 두 지표 간의 균형을 유지하며, 안정적인 예측 성능을 확보할 수 있도록 함.
-2) **데이터의 불균형 문제**(퇴사를 하지 않은 인원이 훨씬 많음)가 있기 때문에 **StratifiedKFold 를 적용<br/>
+  - 평가 지표로 F1-score를 선택한 이유는, 단순히 Recall을 기준으로 최적화를 진행할 경우 약 96%에 이르는 높은 재현율을 얻을 수 있었으나,<br/>
+    그에 따라 Precision이 크게 저하되어 전체적인 모델의 균형이 무너지는 문제가 발생하기 때문.<br/>
+  - Precision과 Recall의 조화평균인 F1-score를 기준으로 최적화함으로써 두 지표 간의 균형을 유지하며, 안정적인 예측 성능을 확보할 수 있도록 함.
+   
+2) **데이터의 불균형 문제**(퇴사를 하지 않은 인원이 훨씬 많음)가 있기 때문에 **StratifiedKFold** 를 적용<br/>
    - **테스트 시 퇴사인원 비율을 균형있게 유지**하고 **과적합으로 인한 잘못된 성능 예측을 방지** 
   
   ##### 성능 향상 결과 
