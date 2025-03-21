@@ -151,9 +151,10 @@
 ### 8. 추가 성능 향상 + StratifiedKFold 적용 후 평가 지표
   ![Image](https://github.com/user-attachments/assets/d6604d0e-fbbf-46c6-85c8-db8d5255f0ef) 
 
-1) **gridsearchCV**를 사용하여 **f1-score 기준**으로 최적의 파라미터를 찾음.
-        따라서 Precision과 Recall의 조화평균인 F1-score를 기준으로 최적화함으로써 두 지표 간의 균형을 유지하며, 안정적인 예측 성능을 확보할 수 있도록 함.
-2) **데이터의 불균형 문제**(퇴사를 하지 않은 인원이 훨씬 많음)가 있기 때문에 **StratifiedKFold 를 적용하여 테스트 시 퇴사인원 비율을 균형있게 유지**하고 **과적합으로 인한 잘못된 성능 예측을 방지** 
+1) **gridsearchCV**를 사용하여 **f1-score 기준**으로 최적의 파라미터를 찾음.<br/>
+   - 따라서 Precision과 Recall의 조화평균인 F1-score를 기준으로 최적화함으로써 두 지표 간의 균형을 유지하며, 안정적인 예측 성능을 확보할 수 있도록 함.
+2) **데이터의 불균형 문제**(퇴사를 하지 않은 인원이 훨씬 많음)가 있기 때문에 **StratifiedKFold 를 적용<br/>
+   - **테스트 시 퇴사인원 비율을 균형있게 유지**하고 **과적합으로 인한 잘못된 성능 예측을 방지** 
   
   ##### 성능 향상 결과 
   ![Image](https://github.com/user-attachments/assets/79d8164e-4ced-41ae-8d58-ead0649b5e05) 
